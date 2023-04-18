@@ -22,3 +22,93 @@ plt.ylabel('Index Points (ES=F)')
 
 plt.legend()
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#secondary axis
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import yfinance as yf
+
+PeriodStart = "2023-01-03"
+PeriodEnd  = "2023-01-10"
+tickerlist = ["ES=F", "SPY"]
+
+df = yf.download(tickerlist, start = PeriodStart, end = PeriodEnd)['Adj Close']
+df.head()
+
+
+#a quick chart to see adjusted closing price through the period of selection
+fig = plt.figure(figsize=(20, 6))
+ax = fig.add_subplot(111)
+ax.plot(df['ES=F'], label = "ES=F", color = "green")
+ax2 = ax.twinx()
+ax2.plot(df['SPY'], label = "SPY", color = "blue")
+
+#set the title and label axis
+plt.title('(a) Hour')
+ax.grid()
+ax.set_xlabel('Time (CT)')
+ax.set_ylabel('Index Points (ES=F)')
+ax2.set_ylabel('Index Points (SPY)')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+
+
+#fixing the legend
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import yfinance as yf
+
+PeriodStart = "2023-01-03"
+PeriodEnd  = "2023-01-10"
+tickerlist = ["ES=F", "SPY"]
+
+df = yf.download(tickerlist, start = PeriodStart, end = PeriodEnd)['Adj Close']
+df.head()
+
+
+#a quick chart to see adjusted closing price through the period of selection
+fig = plt.figure(figsize=(20, 6))
+ax = fig.add_subplot(111)
+line1 = ax.plot(df['ES=F'], label = "ES=F", color = "green")
+ax2 = ax.twinx()
+line2 = ax2.plot(df['SPY'], label = "SPY", color = "blue")
+
+lines = line1 + line2
+labels = [1.get_label() for 1 in lines]
+ax.legend()
+
+#set the title and label axis
+plt.title('(a) Hour')
+ax.grid()
+ax.set_xlabel('Time (CT)')
+ax.set_ylabel('Index Points (ES=F)')
+ax2.set_ylabel('Index Points (SPY)')
+
+plt.show()

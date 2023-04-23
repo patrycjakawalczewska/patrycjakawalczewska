@@ -46,10 +46,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import yfinance as yf
 
+#specify the data
 PeriodStart = "2023-01-03"
 PeriodEnd  = "2023-01-10"
 tickerlist = ["ES=F", "SPY"]
 
+#download the data
 df = yf.download(tickerlist, start = PeriodStart, end = PeriodEnd)['Adj Close']
 df.head()
 
@@ -85,16 +87,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import yfinance as yf
 
-PeriodStart = "2023-01-03"
-PeriodEnd  = "2023-01-10"
+#specify the data
+PeriodStart = "2023-03-01"
+PeriodEnd  = "2023-03-05"
 tickerlist = ["ES=F", "SPY"]
 
+#download the data
 df = yf.download(tickerlist, start = PeriodStart, end = PeriodEnd)['Adj Close']
 df.head()
 
 
 #a quick chart to see adjusted closing price through the period of selection
-fig = plt.figure(figsize=(20, 6))
+fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111)
 line1 = ax.plot(df['ES=F'], label = "ES=F", color = "green")
 ax2 = ax.twinx()
@@ -111,4 +115,97 @@ ax.set_xlabel('Time (CT)')
 ax.set_ylabel('Index Points (ES=F)')
 ax2.set_ylabel('Index Points (SPY)')
 
+plt.show()
+
+
+
+
+
+
+import yfinance as yf
+intraday_data = yf.download(tickers = ["ES=F", "SPY"],
+                            period="1d",
+                            interval="1m",
+                            auto_adjust=True)
+intraday_data.head()
+
+
+
+
+
+
+
+
+
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Define tickers and timeframe
+tickers = ['SPY', 'ES=F']
+start_time = "2023-03-01"
+end_time = "2023-03-05"
+
+
+# Retrieve data from Yahoo Finance
+ohlcv_data = yf.download(tickers, start=start_time, end=end_time, interval=interval)
+
+# Calculate midpoint for each ticker
+midpoint_data = (ohlcv_data['Close'][tickers] + ohlcv_data['Open'][tickers]) / 2
+
+# Plot midpoint data for both tickers on the same graph
+plt.plot(midpoint_data['SPY'], label='SPY')
+plt.plot(midpoint_data['ES=F'], label='ES=F')
+plt.xlabel('Date')
+plt.ylabel('Midpoint')
+plt.title('Midpoints for SPY and ES=F with 1-hour timeframe')
+plt.legend()
+plt.show()
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import yfinance as yf
+
+#specify the data
+PeriodStart = "2023-03-01"
+PeriodEnd  = "2023-03-01"
+tickerlist = ["ES=F", "SPY"]
+
+#download the data
+df = yf.download(tickerlist, start = PeriodStart, end = PeriodEnd, interval='1h')['Adj Close']
+df.head()
+
+# Calculate midpoint for each ticker
+midpoint_data = (df['Close'][tickerlist] + df['Open'][tickerlist]) / 2
+
+#a quick chart to see adjusted closing price through the period of selection
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111)
+line1 = ax.plot(midpoint_data['ES=F'], label = "ES=F", color = "green")
+ax2 = ax.twinx()
+line2 = ax2.plot(midpoint_data['SPY'], label = "SPY", color = "blue")
+
+lines = line1 + line2
+labels = [1.get_label() for 1 in lines]
+ax.legend()
+
+#set the title and label axis
+plt.title('(a) Hour')
+ax.grid()
+ax.set_xlabel('Time (CT)')
+ax.set_ylabel('Index Points (ES=F)')
+ax2.set_ylabel('Index Points (SPY)')
+
+plt.show()
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import yfinance as yf
+data = yf.download('VIX', period="1mo", interval='1h')
+plt.figure(figsize=(20, 6))
+plt.plot(df['VIX'], label = "VIX", color = "blue")
+print(data)
 plt.show()

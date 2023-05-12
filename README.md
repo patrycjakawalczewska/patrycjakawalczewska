@@ -7,7 +7,7 @@ Let's connect! [LinkedIn](https://www.linkedin.com/in/patrycjakawalczewska/) | [
 
 :small_blue_diamond: Based in Lodz, Poland <br>
 :small_blue_diamond: Bachelor's Degree in Economics and BA <br>
-:small_blue_diamond: Interests: Quant, trading, HFT, Algorithms, Machine Learning, Deep Learning <br>
+:small_blue_diamond: Interests: Quant trading, HFT, Algorithms, Machine Learning, Deep Learning <br>
 
 
 :seedling: I am learning Python and R <br>
